@@ -23,4 +23,9 @@ export class DonationsResolver {
   findOne(@Args('id') id: number): Prisma.Prisma__DonationClient<Donation | null, null> {
     return this.donationsService.findOne({ id })
   }
+
+  @Query('totalDonations')
+  getTotalDonations() {
+    return this.donationsService.getTotal()
+  }
 }
