@@ -13,7 +13,7 @@ type Props = {
 
 const montserrat = Montserrat({
   subsets: ['latin'],
-  weight: ['300', '400', '700'],
+  weight: ['300', '400', '500', '700'],
   variable: '--font-montserrat'
 })
 
@@ -35,6 +35,7 @@ const Layout: FC<Props> = ({ children }): JSX.Element => {
           <Menu className="h-5 w-5" />
         </button>
         <Header />
+        <main className="relative">{children}</main>
       </div>
     </>
   )
