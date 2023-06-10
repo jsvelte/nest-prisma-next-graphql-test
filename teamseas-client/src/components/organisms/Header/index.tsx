@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 
 import MorningIcon from '~/utils/icons/MorningIcon'
 import useScreenCondition from '~/hooks/useScreenCondition'
+import AnimatedCounter from '~/components/atoms/AnimatedCounter'
 
 type Props = {}
 
@@ -29,7 +30,9 @@ const Header: FC<Props> = (): JSX.Element => {
         <p className="text-center text-xl text-[#212b4b]">
           We did it! Now let’s keep going. Come back anytime you feel like removing some trash!
         </p>
-        <h1 className="text-5xl font-semibold text-[#6c0146]">33,386,602</h1>
+        <h1 className="text-5xl font-semibold text-[#6c0146]">
+          <AnimatedCounter from={0} to={5489159} />
+        </h1>
         <span className="text-xl font-light text-[#6c0146]">POUNDS OF TRASH</span>
       </div>
     </header>
