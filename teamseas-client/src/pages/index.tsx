@@ -1,15 +1,17 @@
+import clsx from 'clsx'
 import React from 'react'
 import type { NextPage } from 'next'
+import { FcFullTrash } from 'react-icons/fc'
+import { FaLongArrowAltRight } from 'react-icons/fa'
 
 import Card from '~/components/atoms/Card'
 import Layout from '~/components/templates/Layout'
-import clsx from 'clsx'
 
 const Index: NextPage = (): JSX.Element => {
   return (
     <Layout>
       <section className="relative">
-        <img src="/images/style.jpg" className="absolute -top-8 -z-20 w-full" />
+        {/* Donation Card Field */}
         <div className="px-4 md:px-8">
           <Card
             shadow-size="none"
@@ -55,6 +57,55 @@ const Index: NextPage = (): JSX.Element => {
                 </a>
               </div>
             </main>
+          </Card>
+        </div>
+      </section>
+
+      {/* History Cards */}
+      <section className="relative mt-8 w-full !bg-[#00a9cc] px-4 pb-20 md:px-8">
+        <div className="flex flex-col justify-center gap-4 md:flex-row md:gap-8">
+          {/* Leader Board */}
+          <Card
+            shadow-size="none"
+            rounded="lg"
+            className="mt-4 overflow-hidden text-[#022b49] md:mt-8 md:max-w-[450px] lg:max-w-[540px]"
+          >
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat ea iusto porro
+            expedita quisquam nemo sit officia voluptatem, architecto quo minus, adipisci ipsum
+            corrupti perspiciatis autem nisi optio necessitatibus molestiae.
+          </Card>
+          {/* Track Progress Card */}
+          <Card
+            shadow-size="none"
+            rounded="lg"
+            className="mb-52 mt-4 flex-1 overflow-hidden border-none !bg-[#a8dfe2] py-6 text-[#022b49] md:mt-8 md:max-w-[450px] lg:max-w-[540px]"
+          >
+            <header className="px-32 py-4 text-center">
+              <h1 className="mx-auto text-3xl font-extrabold uppercase text-[#0058a5]">
+                Track our progress
+              </h1>
+            </header>
+            <main>
+              <div className="mx-14 rounded-full bg-[#ffb72b] py-2 text-center text-lg text-white shadow-md">
+                <span className="font-extrabold">15,103,847</span> POUNDS REMOVED
+              </div>
+              <div className="mt-4 grid shrink-0 grid-cols-10 gap-x-3 gap-y-6 px-8 py-4">
+                {Array.from({ length: 33 }, (_, i) => (
+                  <FcFullTrash key={i} className={`h-8 w-8 ${i < 16 ? '' : 'opacity-50'}`} alt="" />
+                ))}
+              </div>
+            </main>
+            <footer className="px-34 flex justify-center">
+              <button
+                type="button"
+                className="flex items-center space-x-3 rounded-full bg-white px-6 py-1.5 text-center text-lg font-medium text-[#0056b3] shadow-lg"
+              >
+                <span>How it Works</span>
+                <div className="rounded-full bg-[#99bcdb] px-3 text-white">
+                  <FaLongArrowAltRight className="h-5 w-5" />
+                </div>
+              </button>
+            </footer>
           </Card>
         </div>
       </section>

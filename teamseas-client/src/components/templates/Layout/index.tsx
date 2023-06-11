@@ -35,7 +35,14 @@ const Layout: FC<Props> = ({ children }): JSX.Element => {
           <Menu className="h-5 w-5" />
         </button>
         <Header />
-        <main className="relative">{children}</main>
+        <main className="relative h-full min-h-full">
+          <img
+            src="/images/style.jpg"
+            className="absolute -top-8 -z-20 w-full bg-cover bg-repeat-y"
+          />
+
+          {children}
+        </main>
       </div>
     </>
   )
