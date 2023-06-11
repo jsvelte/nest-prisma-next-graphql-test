@@ -18,7 +18,7 @@ const AnimatedCounter: FC<AnimatedNumberCountProps> = ({ from, to }): JSX.Elemen
     controls = animate(from, to, {
       duration: 1,
       onUpdate(value) {
-        if (node) node.textContent = value.toFixed(2)
+        if (node) node.textContent = value?.toFixed(2) ?? 0
       }
     })
 
