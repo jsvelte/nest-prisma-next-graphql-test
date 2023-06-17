@@ -7,9 +7,9 @@ export const donations: Donation[] = [
     createdAt: '2023-06-16T14:55:24.423Z',
     displayName: 'sfadsf',
     email: 'ff@gmail.com',
-    message: null,
-    mobile: null,
-    team: null
+    message: 'The quick brown fox jumps over the lazy dog near the bank of the river.',
+    mobile: '09657265947',
+    team: 'Osomware'
   },
   {
     id: 43,
