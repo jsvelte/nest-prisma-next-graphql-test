@@ -1,12 +1,12 @@
 import clsx from 'clsx'
-import React from 'react'
+import React, { FC } from 'react'
 
 import PoundItem from './PoundItem'
 import Card from '~/components/atoms/Card'
 
 type Props = {}
 
-const DonationCard = (props: Props) => {
+const DonationCard: FC<Props> = (): JSX.Element => {
   return (
     <Card
       shadow-size="none"

@@ -1,15 +1,26 @@
 import React, { FC } from 'react'
+import { CombinedError } from 'urql'
 import { Search } from 'react-feather'
 
 import LeaderItem from './LeaderItem'
 import Card from '~/components/atoms/Card'
 import { Donation } from '~/utils/interfaces/donation'
+import { PulseLoader } from 'react-spinners'
 
 type Props = {
   donations: Donation[]
+  queryState: {
+    error: CombinedError | undefined
+    isLoading: boolean
+  }
 }
 
-const LeaderBoard: FC<Props> = ({ donations }): JSX.Element => {
+const LeaderBoard: FC<Props> = (props): JSX.Element => {
+  const {
+    donations,
+    queryState: { error, isLoading }
+  } = props
+
   return (
     <Card
       shadow-size="none"
@@ -33,9 +44,22 @@ const LeaderBoard: FC<Props> = ({ donations }): JSX.Element => {
       </header>
       <main>
         <ul className="divide-y divide-slate-200">
-          {donations?.map((donation) => (
-            <LeaderItem key={donation.id} {...{ ...donation }} />
-          ))}
+          {isLoading && !error && (
+            <div className="flex items-center justify-center py-10">
+              <PulseLoader color="#ffb72b" size={10} />
+            </div>
+          )}
+          {isLoading && error && (
+            <p className="py-10 text-center text-sm font-medium text-rose-500">
+              Something went fetching data.
+            </p>
+          )}
+
+          <>
+            {donations?.map((donation) => (
+              <LeaderItem key={donation.id} {...{ ...donation }} />
+            ))}
+          </>
         </ul>
       </main>
     </Card>
