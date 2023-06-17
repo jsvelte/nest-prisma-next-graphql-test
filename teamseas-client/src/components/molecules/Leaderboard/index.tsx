@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React, { FC } from 'react'
 import { CombinedError } from 'urql'
 import { Search } from 'react-feather'
@@ -8,17 +9,26 @@ import { Donation } from '~/utils/interfaces/donation'
 import { PulseLoader } from 'react-spinners'
 
 type Props = {
-  donations: Donation[]
-  queryState: {
+  query: {
+    data: Donation[]
     error: CombinedError | undefined
     isLoading: boolean
+  }
+  filter: {
+    field: string
+    actions: {
+      handleChangeOrderByField: (selectedField: string) => void
+    }
   }
 }
 
 const LeaderBoard: FC<Props> = (props): JSX.Element => {
   const {
-    donations,
-    queryState: { error, isLoading }
+    query: { data, error, isLoading },
+    filter: {
+      field,
+      actions: { handleChangeOrderByField }
+    }
   } = props
 
   return (
@@ -30,11 +40,23 @@ const LeaderBoard: FC<Props> = (props): JSX.Element => {
       <header className="flex items-center justify-between">
         <div className="rounded-full bg-[#a8dfe2]">
           <ul className="inline-flex items-center space-x-2 px-1 py-1 text-sm font-medium uppercase">
-            <li className="rounded-full bg-white px-4 py-1">
-              <a href="#">most recent</a>
+            <li
+              className={clsx(
+                'cursor-pointer px-4',
+                field === 'createdAt' ? 'rounded-full bg-white py-1' : ''
+              )}
+              onClick={() => handleChangeOrderByField('createdAt')}
+            >
+              <div>most recent</div>
             </li>
-            <li className="px-4 py-1">
-              <a href="#">most trach</a>
+            <li
+              className={clsx(
+                'cursor-pointer px-4',
+                field === 'count' ? 'rounded-full bg-white py-1' : ''
+              )}
+              onClick={() => handleChangeOrderByField('count')}
+            >
+              <div>most pounds</div>
             </li>
           </ul>
         </div>
@@ -56,7 +78,7 @@ const LeaderBoard: FC<Props> = (props): JSX.Element => {
           )}
 
           <>
-            {donations?.map((donation) => (
+            {data?.map((donation) => (
               <LeaderItem key={donation.id} {...{ ...donation }} />
             ))}
           </>

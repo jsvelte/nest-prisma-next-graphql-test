@@ -2,7 +2,6 @@ import { useQuery } from 'urql'
 import type { NextPage } from 'next'
 import React, { useState } from 'react'
 
-import { donations } from '~/utils/data/donations'
 import Layout from '~/components/templates/Layout'
 import { Donation } from '~/utils/interfaces/donation'
 import { GetAllDonationsQuery } from '~/graphql/queries'
@@ -27,6 +26,8 @@ const Index: NextPage = (): JSX.Element => {
     }
   })
 
+  const handleChangeOrderByField = (selectedField: string): void => setOrderByField(selectedField)
+
   return (
     <Layout>
       <section className="relative">
@@ -42,10 +43,16 @@ const Index: NextPage = (): JSX.Element => {
           {/* Leader Board */}
           <LeaderBoard
             {...{
-              donations: data?.donations ?? [],
-              queryState: {
+              query: {
+                data: data?.donations ?? [],
                 error,
                 isLoading: fetching || !data
+              },
+              filter: {
+                field,
+                actions: {
+                  handleChangeOrderByField
+                }
               }
             }}
           />
