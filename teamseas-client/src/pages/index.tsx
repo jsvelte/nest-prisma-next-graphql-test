@@ -3,8 +3,8 @@ import type { NextPage } from 'next'
 
 import { donations } from '~/utils/data/donations'
 import Layout from '~/components/templates/Layout'
-import ProgressCard from '~/components/molecules/ProgressCard'
 import LeaderBoard from '~/components/molecules/Leaderboard'
+import ProgressCard from '~/components/molecules/ProgressCard'
 import DonationCard from '~/components/molecules/DonationCard'
 
 const Index: NextPage = (): JSX.Element => {

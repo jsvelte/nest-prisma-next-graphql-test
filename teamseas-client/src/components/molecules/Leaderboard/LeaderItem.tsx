@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React, { FC } from 'react'
 
 type Props = {
@@ -16,7 +17,7 @@ const LeaderItem: FC<Props> = (props): JSX.Element => {
 
   return (
     <li className="flex items-center justify-between py-4">
-      <div className="inline-flex items-start space-x-4">
+      <div className="inline-flex items-center space-x-4">
         {/* User Details */}
         <div className="shrink-0">
           <img src="/donation-avatar/1.png" alt="" className="h-14 w-14" />
@@ -30,7 +31,9 @@ const LeaderItem: FC<Props> = (props): JSX.Element => {
         <span className="shrink-0 rounded bg-[#00aacc] px-2.5 py-1.5 font-bold text-white">
           {count} pounds
         </span>
-        <p className="font-light text-[#7a8489]">{createdAt}</p>
+        <p className="font-light text-[#7a8489]">
+          {moment(createdAt).format('M/D/YYYY, h:mm:ss A')}
+        </p>
       </div>
     </li>
   )
